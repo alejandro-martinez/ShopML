@@ -1,0 +1,18 @@
+<div class="thumbnail">
+    <div class="container-img">
+        <img ng-src="{{ product.image }}" alt="{{ product.title }}">
+    </div>
+    <div class="caption">
+        <h4 class="pull-right">{{ product.currency_symbol }} {{ product.price }}</h4>
+        <h4>
+            <a href="{{ product.permalink }}">{{ product.title }}</a>
+        </h4>
+        <p>{{ product.subtitle }} <a target="_blank" href="{{ product.permalink }}"></a></p>
+    </div>
+    <div class="ratings">
+        <p class="pull-right">{{ product.reviews }} calificaciones</p>
+        <p>
+            <span ng-repeat="p in product.rating track by $index" class="glyphicon glyphicon-star"></span>
+        </p>
+    </div>
+</div>

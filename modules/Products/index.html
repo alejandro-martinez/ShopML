@@ -1,0 +1,47 @@
+<div class="row search">
+    
+    <!-- Search --> 
+    <div class="col-xs-5 pull-right">
+        <div class="input-group pull-right">
+          <input type="text" ng-model="$ctrl.filter_term" 
+                 class="form-control" placeholder="Busca cualquier cosa...">
+          <span class="input-group-btn">
+            <button class="btn btn-default" ng-click="$ctrl.search()" type="button">Buscar</button>
+          </span>
+        </div>
+    </div>
+
+    <!-- Available Sorts --> 
+    <div class="col-xs-3 pull-right">
+      <div class="dropdown pull-right">
+        <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Ordenar
+        <span class="caret"></span></button>
+        
+        <ul class="dropdown-menu" role="menu">
+          <li ng-repeat="f in $ctrl.products.available_sorts" id="{{ f.id }}" role="presentation">
+            <a role="menuitem" ng-click="$ctrl.sortBy( f.id )" href="javascript:void(0)"> {{ f.name }}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+</div>
+
+<!-- Products List -->
+<div class="row">
+  <div class="col-sm-4 col-lg-4 col-md-4" ng-repeat="product in $ctrl.products.results">
+      <product-detail></product-detail>
+  </div>
+  <div class="text-center" ng-if="$ctrl.data_loaded" ng-hide="$ctrl.products.results.length">
+      <h2>No se encontraron productos!</h2>
+  </div>
+</div>
+
+<!-- Pagination -->
+<div class="row">
+  <pager ng-if="$ctrl.data_loaded" 
+        ng-show="$ctrl.products.results.length"
+  		data="$ctrl.products"
+  		pagination="$ctrl.pagination">
+  </pager>
+</div>
